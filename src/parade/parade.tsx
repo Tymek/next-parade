@@ -1,3 +1,4 @@
+import { FC } from 'react'
 import Head from 'next/head'
 import dynamic, { DynamicOptions } from 'next/dynamic'
 
@@ -13,27 +14,43 @@ const parade = (
     )
   }
 
-  return () => (
+  const ComponentsParade: FC<{ docgen?: any; title?: string }> = ({
+    title = '🚩 Parade!',
+    docgen: data,
+  }) => (
     <>
       <Head>
-        <title>Parade</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>{title}</title>
       </Head>
       <main>
-        <h1>🚩 Parade!</h1>
+        <h1>{title}</h1>
         {keys.map((key) => {
           const DynamicComponent = dynamic(async () => context(key), options)
 
           return (
             <div key={key}>
               <h2>{key}</h2>
-              <DynamicComponent />
+              <div
+                style={{
+                  border: '1px solid #dedeef',
+                  borderRadius: '5px',
+                  width: 'calc(100% + 20px)',
+                  padding: '10px',
+                  margin: '0 -10px',
+                }}
+              >
+                <DynamicComponent />
+              </div>
             </div>
           )
         })}
       </main>
+      <footer>
+        <pre>{data && JSON.stringify(data, null, 2)}</pre>
+      </footer>
     </>
   )
+  return ComponentsParade
 }
 
 export default parade

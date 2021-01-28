@@ -8,8 +8,14 @@
     "start": "next start"
   },
   "dependencies": {
+    "crypto": "^1.0.1",
+    "fs-extra": "^9.1.0",
+    "lodash": "^4.17.20",
     "next": "10.0.5",
     "react": "17.0.1",
+    "react-docgen": "^5.3.1",
+    "react-docgen-actual-name-handler": "^2.1.0",
+    "react-docgen-typescript": "^1.20.5",
     "react-dom": "17.0.1"
   },
   "devDependencies": {
