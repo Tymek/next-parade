@@ -1,6 +1,6 @@
 import styles from '../styles/Home.module.css'
 import parade from '../../lib'
-import withStaticProps from '../../lib/withStaticProps'
+// import withStaticProps from '../../lib/withStaticProps'
 
 const context = require.context('../components', true, /[A-Z].*\.tsx/)
 const ComponentsParade = parade(context)
@@ -14,7 +14,7 @@ const Home = ({ ...props }) => {
 }
 export default Home
 
-export const getStaticProps = withStaticProps(context)
+// export const getStaticProps = withStaticProps(context)
 
 /* alternatives */
 
