@@ -1,6 +1,6 @@
 import styles from '../styles/Home.module.css'
-import parade from '../parade'
-import withStaticProps from '../parade/withStaticProps'
+import parade from '../../lib'
+import withStaticProps from '../../lib/withStaticProps'
 
 const context = require.context('../components', true, /[A-Z].*\.tsx/)
 const ComponentsParade = parade(context)
@@ -18,8 +18,8 @@ export const getStaticProps = withStaticProps(context)
 
 /* alternatives */
 
-// export default ComponentsParade
+// export default ComponentsParade // without container override?
 
-// export const getStaticProps: GetStaticProps = async (context) => {
+// export const getStaticProps: GetStaticProps = async (context) => { // additional props?
 //   return withStaticProps(context)
 // }
