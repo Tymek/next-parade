@@ -16,26 +16,29 @@ Configure and render it on the page:
 
 ```js
 // ./pages/index.js
-import parade, { withStaticProps } from 'next-parade'
+import parade from 'next-parade'
+import withStaticProps from 'next-parade/props'
 
-const context = require.context('../', true, /\.js/)
+const context = require.context('../components', true, /\.js/) // set path and regex
 export default parade(context)
-export getStaticProps = withStaticProps
+export const getStaticProps = withStaticProps(context)
 ```
 
 ### Advanced example
 
 ```tsx
-// ./pages/index.tsx
-import parade, { withStaticProps } from 'next-parade'
+// ./pages/showcase.tsx
+import { GetStaticProps } from 'next'
+import parade from 'next-parade'
+import withStaticProps from 'next-parade/props'
 import styles from '../styles/Home.module.css'
 
-const context = require.context('../components', true, /\/[A-Z]\w\.tsx/) // `../components` directory, different regex
+const context = require.context('../src/components', true, /\/[A-Z]\w\.tsx/)
 const ComponentsParade = parade(context)
 
 const Home = ({ ...props }) => (
   <div className={styles.container}>
-    <ComponentsParade {...props} />
+    <ComponentsParade {...props} title="Styleguide" style={{ maxWidth: '600px' }} />
   </div>
 )
 
@@ -71,7 +74,8 @@ This project is using itself for documentation.
 - package release
 - license info (MIT? 0BSD?)
 - CI
-- website deployment
+- ~~website deployment~~
 - editable props
 - parse markdown
 - order of elements (sort)
+- add "last build" to website

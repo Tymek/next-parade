@@ -14,9 +14,6 @@ const withStaticProps = (webpackContext: __WebpackModuleApi.RequireContext) => {
     ...props,
   })
 
-  // const modules = files.map(key => webpackContext(key).id)
-  // const data = await docgen(files)
-
   const getStaticProps: GetStaticProps = async () => {
     return {
       props: {

@@ -17,12 +17,13 @@ const parade = (
   const ComponentsParade: FC<{ docgen?: any; title?: string }> = ({
     title = '🚩 Parade!',
     docgen: data,
+    ...props
   }) => (
     <>
       <Head>
         <title>{title}</title>
       </Head>
-      <main>
+      <main {...props}>
         <h1>{title}</h1>
         {keys.map((key) => {
           const DynamicComponent = dynamic(async () => context(key), options)
