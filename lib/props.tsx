@@ -14,10 +14,15 @@ const withStaticProps = (webpackContext: __WebpackModuleApi.RequireContext) => {
     ...props,
   })
 
+  const data = docgen(files)
+
   const getStaticProps: GetStaticProps = async () => {
     return {
       props: {
-        docgen: docgen(files).map(restoreKeys),
+        docgen: {
+          ...data,
+          data: data.data.map(restoreKeys),
+        },
       },
     }
   }

@@ -19,10 +19,12 @@ Configure and render it on the page:
 import parade from 'next-parade'
 import withStaticProps from 'next-parade/props'
 
-const context = require.context('../components', true, /\.js/) // set path and regex
+const context = require.context('../src/components', true, /\.js/) // set path and regex
 export default parade(context)
 export const getStaticProps = withStaticProps(context)
 ```
+
+By convention React Component should be the default export from a file.
 
 ### Advanced example
 
@@ -33,7 +35,7 @@ import parade from 'next-parade'
 import withStaticProps from 'next-parade/props'
 import styles from '../styles/Home.module.css'
 
-const context = require.context('../src/components', true, /\/[A-Z]\w\.tsx/)
+const context = require.context('../components', true, /\/[A-Z]\w\.tsx/)
 const ComponentsParade = parade(context)
 
 const Home = ({ ...props }) => (

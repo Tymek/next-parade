@@ -6,18 +6,21 @@ import { tsParser } from './typescript'
 import { root } from './config'
 
 const docgen = (files?: string[]) => {
+  console.log('>>> root:', root)
   const tsconfig = resolve(root, 'tsconfig.json')
   const typescript = !!existsSync(tsconfig)
   // if (typescript && isDev) {
   //   console.log(`Using TypeScript. Config found at ${tsconfig}`)
   // }
 
-  const tsFiles = files.filter(file => file.match(/\.(tsx|ts)$/))
-  const jsFiles = files.filter(file => file.match(/\.(js|jsx|mjs)$/))
+  const tsFiles = files.filter((file) => file.match(/\.(tsx|ts)$/))
+  const jsFiles = files.filter((file) => file.match(/\.(js|jsx|mjs)$/))
 
-  return typescript
+  const data = typescript
     ? tsParser(tsFiles, tsconfig).concat(jsParser(jsFiles))
     : jsParser(jsFiles)
+
+  return { typescript, tsFiles, jsFiles, data }
 }
 
 export default docgen
