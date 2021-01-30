@@ -1,3 +1,4 @@
+import { readdirSync} from 'fs'
 import { existsSync } from 'fs-extra'
 import { resolve } from 'path'
 import { jsParser } from './javascript'
@@ -6,12 +7,17 @@ import { tsParser } from './typescript'
 import { root } from './config'
 
 const docgen = (files?: string[]) => {
-  console.log('>>> root:', root)
-  console.log('>>> __dirname:', __dirname)
-  console.log('>>> __filename:', __filename)
-  console.log('>>> require.main.id:', require.main.id)
-  console.log('>>> require.main.path:', require.main.path)
-  console.log('>>> cwd:', process.cwd())
+  // console.log('>>> root:', root)
+  // console.log('>>> __dirname:', __dirname)
+  // console.log('>>> __filename:', __filename)
+  // console.log('>>> require.main.id:', require.main.id)
+  // console.log('>>> require.main.path:', require.main.path)
+  // console.log('>>> cwd:', process.cwd())
+  
+  readdirSync(root).forEach(file => {
+    console.log(file)
+  })
+
   const tsconfig = resolve(root, 'tsconfig.json')
   const typescript = !!existsSync(tsconfig)
   // if (typescript && isDev) {
