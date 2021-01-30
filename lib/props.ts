@@ -9,11 +9,18 @@ const withStaticProps = (
   const keys = webpackContext.keys().map((key) => resolve(root, key))
 
   const data = docgen(keys)
+  let text = ''
+
+  try {
+    text = JSON.stringify(data, null, 2)
+  } catch (err) {
+    console.error('server serialize error', err)
+  }
 
   const getStaticProps: GetStaticProps = async () => {
     return {
       props: {
-        docgen: data,
+        docgen: text,
       },
     }
   }

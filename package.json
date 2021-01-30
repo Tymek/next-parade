@@ -1,7 +1,8 @@
 {
   "name": "next-parade",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "files": [
+    "props.js",
     "dist",
     "esm"
   ],
@@ -10,7 +11,7 @@
   "types": "esm/index.d.ts",
   "sideEffects": false,
   "scripts": {
-    "postinstall": "yarn bundle",
+    "prepare": "yarn bundle",
     "bundle-cjs": "rimraf ./dist && tsc",
     "bundle-esm": "rimraf ./esm && tsc --outDir esm --module es2015",
     "bundle": "yarn bundle-cjs && yarn bundle-esm",

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Fragment } from 'react';
+import { Fragment } from 'react'
 import type { FC } from 'react'
 import Head from 'next/head'
 import dynamic, { DynamicOptions } from 'next/dynamic'
@@ -49,7 +49,7 @@ const parade = (
         })}
       </main>
       <footer>
-        <pre>{data && JSON.stringify(data, null, 2)}</pre>
+        <pre>{data}</pre>
       </footer>
     </Fragment>
   )
