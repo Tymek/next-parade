@@ -1,5 +1,6 @@
 import * as fs from 'fs'
 import * as path from 'path'
+
 // export interface DocgenConfig {
 //   handlers?: any[]
 //   resolver?: (ast: any, recast: any) => any
@@ -54,6 +55,10 @@ import * as path from 'path'
 //   mdxExtensions: string[]
 //   filterComponents: (files: string[]) => string[]
 // }
+
+export const unixPath = (src: string): string => {
+  return path.normalize(src).replace(/\\/g, '/')
+}
 
 export const root = fs.realpathSync(process.cwd())
 

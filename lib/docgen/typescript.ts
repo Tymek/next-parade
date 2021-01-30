@@ -3,11 +3,10 @@ import * as path from 'path'
 import * as crypto from 'crypto'
 import * as _ from 'lodash/fp'
 import * as reactDocgenTs from 'react-docgen-typescript'
-import ts from 'typescript'
+import * as ts from 'typescript'
 
 // import { Config } from '../../config/argv'
-import { root } from './config'
-import { unixPath } from './utils'
+import { unixPath, root } from './config'
 
 export interface TSFile {
   text?: string
@@ -20,10 +19,7 @@ interface PropItem {
 }
 
 const digest = (str: string) =>
-  crypto
-    .createHash('md5')
-    .update(str)
-    .digest('hex')
+  crypto.createHash('md5').update(str).digest('hex')
 
 const cacheFilepath = path.join(root, '.next/cache/propsParser.json')
 export const readCacheFile = () =>
@@ -32,7 +28,7 @@ export const readCacheFile = () =>
 function checkFilesOnCache(files: string[]): string[] {
   const cache = readCacheFile()
   if (_.isEmpty(cache)) return files
-  return files.filter(filepath => {
+  return files.filter((filepath) => {
     const normalized = path.normalize(filepath)
     const fullpath = path.resolve(root, normalized)
     const hash = digest(fs.readFileSync(fullpath, 'utf-8'))
@@ -72,7 +68,7 @@ function getPropsOnCache(): any {
 
 const mergeWithCache = (cache: any[], props: any[]) => {
   const keys = props.map(_.prop('key'))
-  return cache.filter(item => !_.contains(item.key, keys)).concat(props)
+  return cache.filter((item) => !_.contains(item.key, keys)).concat(props)
 }
 
 const removeFromCache = (filepath: string) => {
@@ -109,12 +105,12 @@ function getTSConfigFile(tsconfigPath: string): ts.ParsedCommandLine {
     ts.sys,
     basePath,
     {},
-    tsconfigPath
+    tsconfigPath,
   )
 }
 
 function loadFiles(filesToLoad: string[]): void {
-  filesToLoad.forEach(filepath => {
+  filesToLoad.forEach((filepath) => {
     const normalized = path.normalize(filepath)
     const fullpath = path.resolve(root, normalized)
     const found = filesMap.get(normalized)
@@ -133,11 +129,11 @@ function createServiceHost(
     getScriptFileNames: () => {
       return [...Array.from(files.keys())]
     },
-    getScriptVersion: fileName => {
+    getScriptVersion: (fileName) => {
       const file = files.get(fileName)
       return (file && file.version.toString()) || ''
     },
-    getScriptSnapshot: fileName => {
+    getScriptSnapshot: (fileName) => {
       const fullpath = path.resolve(root, fileName)
       if (!fs.existsSync(fullpath)) {
         return undefined
@@ -155,7 +151,7 @@ function createServiceHost(
     },
     getCurrentDirectory: () => root,
     getCompilationSettings: () => compilerOptions,
-    getDefaultLibFileName: options => ts.getDefaultLibFilePath(options),
+    getDefaultLibFileName: (options) => ts.getDefaultLibFilePath(options),
     fileExists: ts.sys.fileExists,
     readFile: ts.sys.readFile,
     readDirectory: ts.sys.readDirectory,
@@ -178,7 +174,8 @@ const parseFiles = (files: string[], tsconfig: string) => {
 
       return Boolean(propFilter(prop))
     },
-    componentNameResolver(exp: ts.Symbol, source: ts.SourceFile): any {
+    // componentNameResolver(exp: ts.Symbol, source: ts.SourceFile): any {
+    componentNameResolver(): any {
       // const componentNameResolver = config.docgenConfig.resolver
       // const val =
       //   componentNameResolver &&
@@ -201,16 +198,13 @@ const parseFiles = (files: string[], tsconfig: string) => {
     return languageService.getProgram()!
   }
 
-  return files.map(filepath => ({
+  return files.map((filepath) => ({
     key: unixPath(filepath),
     value: parser.parseWithProgramProvider(filepath, programProvider),
   }))
 }
 
-export const tsParser = (
-  files: string[],
-  tsconfig?: string
-) => {
+export const tsParser = (files: string[], tsconfig?: string) => {
   if (!tsconfig) return []
   const filesToLoad = checkFilesOnCache(files)
   const propsOnCache = getPropsOnCache()

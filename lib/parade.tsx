@@ -1,4 +1,6 @@
-import { FC } from 'react'
+import * as React from 'react'
+import { Fragment } from 'react'
+import type { FC } from 'react'
 import Head from 'next/head'
 import dynamic, { DynamicOptions } from 'next/dynamic'
 
@@ -17,12 +19,13 @@ const parade = (
   const ComponentsParade: FC<{ docgen?: any; title?: string }> = ({
     title = '🚩 Parade!',
     docgen: data,
+    ...props
   }) => (
-    <>
+    <Fragment>
       <Head>
         <title>{title}</title>
       </Head>
-      <main>
+      <main style={{ padding: '0 24px' }} {...props}>
         <h1>{title}</h1>
         {keys.map((key) => {
           const DynamicComponent = dynamic(async () => context(key), options)
@@ -46,9 +49,9 @@ const parade = (
         })}
       </main>
       <footer>
-        <pre>{data && JSON.stringify(data, null, 2)}</pre>
+        <pre>{data}</pre>
       </footer>
-    </>
+    </Fragment>
   )
   return ComponentsParade
 }
