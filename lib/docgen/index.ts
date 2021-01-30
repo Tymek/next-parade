@@ -7,6 +7,11 @@ import { root } from './config'
 
 const docgen = (files?: string[]) => {
   console.log('>>> root:', root)
+  console.log('>>> __dirname:', __dirname)
+  console.log('>>> __filename:', __filename)
+  console.log('>>> require.main.id:', require.main.id)
+  console.log('>>> require.main.path:', require.main.path)
+  console.log('>>> cwd:', process.cwd())
   const tsconfig = resolve(root, 'tsconfig.json')
   const typescript = !!existsSync(tsconfig)
   // if (typescript && isDev) {
