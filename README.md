@@ -72,11 +72,8 @@ This project is using itself for documentation.
 
 ## Roadmap
 
-- esbuild
-- package release
 - license info (MIT? 0BSD?)
 - CI
-- ~~website deployment~~
 - editable props
 - parse markdown
 - order of elements (sort)

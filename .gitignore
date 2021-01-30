@@ -32,3 +32,7 @@
 
 # vercel
 .vercel
+
+# bundle
+index.js
+props.js

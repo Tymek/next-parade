@@ -1,4 +1,3 @@
-import { readdirSync} from 'fs'
 import { existsSync } from 'fs-extra'
 import { resolve } from 'path'
 import { jsParser } from './javascript'

@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, Fragment } from 'react'
 import Head from 'next/head'
 import dynamic, { DynamicOptions } from 'next/dynamic'
 
@@ -19,7 +19,7 @@ const parade = (
     docgen: data,
     ...props
   }) => (
-    <>
+    <Fragment>
       <Head>
         <title>{title}</title>
       </Head>
@@ -49,7 +49,7 @@ const parade = (
       <footer>
         <pre>{data && JSON.stringify(data, null, 2)}</pre>
       </footer>
-    </>
+    </Fragment>
   )
   return ComponentsParade
 }
