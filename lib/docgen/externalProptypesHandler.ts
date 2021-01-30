@@ -314,7 +314,7 @@ function resolveDependencies(filePaths: string[], componentPath: string) {
       const srcPath = resolveFilePath(componentPath, importedFilePath)
 
       if (!srcPath) {
-        return
+        return undefined
       }
 
       const src = getSrc(srcPath)

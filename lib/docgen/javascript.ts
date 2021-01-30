@@ -6,7 +6,7 @@ import actualNameHandler from 'react-docgen-actual-name-handler'
 import * as reactDocgen from 'react-docgen'
 
 import { root, isDev } from './config'
-import { unixPath } from './utils'
+import { unixPath } from './config'
 import { resolver } from './docz-docgen-resolver'
 import externalProptypesHandler from './externalProptypesHandler'
 

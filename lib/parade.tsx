@@ -1,6 +1,8 @@
-import { FC, Fragment } from 'react'
+import * as React from 'react'
+import type { FC } from 'react'
 import Head from 'next/head'
 import dynamic, { DynamicOptions } from 'next/dynamic'
+const { Fragment } = React
 
 const parade = (
   context: __WebpackModuleApi.RequireContext,

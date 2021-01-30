@@ -5,7 +5,7 @@ import { tsParser } from './typescript'
 // import { isDev, root } from './config'
 import { root } from './config'
 
-const docgen = (files?: string[]) => {
+const docgen = (files: string[]) => {
   const tsconfig = resolve(root, 'tsconfig.json')
   const typescript = !!existsSync(tsconfig)
   // if (typescript && isDev) {

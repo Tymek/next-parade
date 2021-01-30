@@ -34,5 +34,6 @@
 .vercel
 
 # bundle
-index.js
-props.js
+dist
+esm
+.tmp
