@@ -19,9 +19,9 @@ Configure and render it on the page:
 import parade from 'next-parade'
 import withStaticProps from 'next-parade/props'
 
-const context = require.context('../src/components', true, /\.js/) // set path and regex
+const context = require.context('../src/components', true, /\.js/) // relative path and regex
 export default parade(context)
-export const getStaticProps = withStaticProps(context)
+export const getStaticProps = withStaticProps(context, 'src/components') // context and "absolute" path
 ```
 
 By convention React Component should be the default export from a file.
@@ -47,7 +47,7 @@ const Home = ({ ...props }) => (
 export default Home
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const output = withStaticProps(context)
+  const output = withStaticProps(context, 'components')
   return {
     ...output,
     props: {

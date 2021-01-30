@@ -23,7 +23,7 @@ const parade = (
       <Head>
         <title>{title}</title>
       </Head>
-      <main {...props}>
+      <main style={{ padding: '0 24px' }} {...props}>
         <h1>{title}</h1>
         {keys.map((key) => {
           const DynamicComponent = dynamic(async () => context(key), options)

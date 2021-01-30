@@ -1,28 +1,19 @@
-import { join as joinPath } from 'path'
+import { resolve } from 'path'
 import { GetStaticProps } from 'next'
 import docgen from './docgen'
 
-const withStaticProps = (webpackContext: __WebpackModuleApi.RequireContext) => {
-  const id = webpackContext.id
-  const prefix = id.split(' ')[0]
-  const keys = webpackContext.keys()
-  const files = keys.map((key) => joinPath(prefix, key))
+const withStaticProps = (
+  webpackContext: __WebpackModuleApi.RequireContext,
+  root: string = './',
+) => {
+  const keys = webpackContext.keys().map((key) => resolve(root, key))
 
-  const restoreKeys = ({ key, ...props }) => ({
-    key: keys[files.findIndex((k) => k === key)],
-    path: key,
-    ...props,
-  })
-
-  const data = docgen(files)
+  const data = docgen(keys)
 
   const getStaticProps: GetStaticProps = async () => {
     return {
       props: {
-        docgen: {
-          ...data,
-          data: data.data.map(restoreKeys),
-        },
+        docgen: data,
       },
     }
   }
