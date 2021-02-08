@@ -30,7 +30,7 @@
     "lodash": "4.17.20",
     "react-docgen": "5.3.1",
     "react-docgen-actual-name-handler": "2.1.0",
-    "react-docgen-typescript": "1.20.5",
+    "react-docgen-typescript": "1.21.0",
     "recast": "0.20.4"
   },
   "devDependencies": {
