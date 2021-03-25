@@ -34,7 +34,7 @@
     "recast": "0.20.4"
   },
   "devDependencies": {
-    "@types/fs-extra": "9.0.8",
+    "@types/fs-extra": "9.0.9",
     "@types/lodash": "4.14.168",
     "@types/next": "9.0.0",
     "@types/node": "14.14.22",
