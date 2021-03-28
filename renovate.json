@@ -1,5 +1,29 @@
 {
   "extends": [
     "config:base"
+  ],
+  "bumpVersion": "patch",
+  "groupName": "all",
+  "packageRules": [
+    {
+      "updateTypes": [
+        "minor",
+        "patch",
+        "pin",
+        "digest"
+      ],
+      "automerge": true
+    },
+    {
+      "depTypeList": [
+        "devDependencies",
+        "optionalDependencies"
+      ],
+      "automerge": true
+    }
+  ],
+  "timezone": "Europe/Warsaw",
+  "schedule": [
+    "before 9am on Saturday"
   ]
 }

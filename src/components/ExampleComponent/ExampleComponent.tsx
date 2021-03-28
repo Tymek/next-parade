@@ -4,9 +4,6 @@ export type ExampleComponentProps = {
   text?: string
 }
 
-/**
- * Description of the thing
- */
 const ExampleComponent: FC<ExampleComponentProps> = ({
   text = 'Example component',
 }) => (

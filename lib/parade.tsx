@@ -3,6 +3,8 @@ import { Fragment } from 'react'
 import type { FC } from 'react'
 import Head from 'next/head'
 import dynamic, { DynamicOptions } from 'next/dynamic'
+import ComponentWrapper from './components/ComponentWrapper'
+import type ValueType from './docgen/valueType'
 
 const parade = (
   context: __WebpackModuleApi.RequireContext,
@@ -18,41 +20,38 @@ const parade = (
 
   const ComponentsParade: FC<{ docgen?: any; title?: string }> = ({
     title = '🚩 Parade!',
-    docgen: data,
+    docgen,
     ...props
-  }) => (
-    <Fragment>
-      <Head>
-        <title>{title}</title>
-      </Head>
-      <main style={{ padding: '0 24px' }} {...props}>
-        <h1>{title}</h1>
-        {keys.map((key) => {
-          const DynamicComponent = dynamic(async () => context(key), options)
+  }) => {
+    const data = JSON.parse(docgen)?.data
 
-          return (
-            <div key={key}>
-              <h2>{key}</h2>
-              <div
-                style={{
-                  border: '1px solid #dedeef',
-                  borderRadius: '5px',
-                  width: 'calc(100% + 20px)',
-                  padding: '10px',
-                  margin: '0 -10px',
-                }}
-              >
-                <DynamicComponent />
-              </div>
-            </div>
-          )
-        })}
-      </main>
-      <footer>
-        <pre>{data}</pre>
-      </footer>
-    </Fragment>
-  )
+    return (
+      <Fragment>
+        <Head>
+          <title>{title}</title>
+        </Head>
+        <main style={{ padding: '0 24px' }} {...props}>
+          <h1>{title}</h1>
+          {keys.map((key) => {
+            const DynamicComponent = dynamic(async () => context(key), options)
+            const path = key.replace(/^\.\//, '')
+            const file = data?.find(({ key: file }) => file.includes(path))
+              ?.value[0]
+
+            return (
+              <ComponentWrapper
+                docgen={file}
+                key={key}
+                path={path}
+                Component={DynamicComponent}
+              />
+            )
+          })}
+        </main>
+      </Fragment>
+    )
+  }
+
   return ComponentsParade
 }
 

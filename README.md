@@ -4,6 +4,11 @@ Lightweight UI component stories and documentation showcase for [Next.js](https:
 
 > ⚠️ Pre-alpha: This is a proof-of-concept. You will be disappointed!
 
+**Why?**<br/>
+It's easy and **_fast_**.<br/>
+No additional steps in CI/CD.<br/>
+No need to align webpack config.
+
 ## Usage
 
 ```bash
@@ -47,7 +52,11 @@ const ComponentsParade = parade(context)
 
 const Home = ({ ...props }) => (
   <div className={styles.container}>
-    <ComponentsParade {...props} title="Styleguide" style={{ maxWidth: '600px' }} />
+    <ComponentsParade
+      {...props}
+      title="Styleguide"
+      style={{ maxWidth: '600px' }}
+    />
   </div>
 )
 
@@ -63,7 +72,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
     },
   }
 }
-
 ```
 
 ## Development
@@ -75,11 +83,10 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-This project *is using itself* for creating it's documentation.
+This project _is using itself_ for creating it's documentation.
 
 ## Roadmap
 
-- automate CI
 - live edit props
 - parse markdown
 - order of elements (sort)
