@@ -1,8 +1,9 @@
 {
   "name": "next-parade",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "files": [
     "props.js",
+    "lib",
     "dist",
     "esm"
   ],
@@ -12,10 +13,10 @@
   "sideEffects": false,
   "scripts": {
     "prepare": "yarn bundle",
-    "bundle-cjs": "rimraf ./dist && tsc",
-    "bundle-esm": "rimraf ./esm && tsc --outDir esm --module es2015",
+    "bundle-cjs": "rimraf ./dist && tsc --project tsconfig.lib.json",
+    "bundle-esm": "rimraf ./esm && tsc --project tsconfig.lib.json --outDir esm --module es2015",
     "bundle": "yarn bundle-cjs && yarn bundle-esm",
-    "watch": "tsc --outDir esm --module es2015 --watch",
+    "watch": "tsc --project tsconfig.lib.json --outDir esm --module es2015 --watch",
     "dev": "next dev",
     "build": "next build",
     "start": "next start"

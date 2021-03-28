@@ -1,53 +1,27 @@
-// {
-//   // see https://www.typescriptlang.org/tsconfig to better understand tsconfigs
-//   "include": ["lib", "types"],
-//   "compilerOptions": {
-//     "module": "commonjs",
-//     "lib": ["dom", "esnext"],
-//     "importHelpers": true,
-//     // "declaration": true,
-//     "target": "es6",
-//     // "declarationMap": true,
-//     // "emitDeclarationOnly": true,
-//     // "inlineSourceMap": true,
-//     "rootDir": "./lib",
-//     "outDir": "./dist",
-//     "strict": false,
-//     "noImplicitReturns": true,
-//     "noFallthroughCasesInSwitch": true,
-//     "noUnusedLocals": true,
-//     "noUnusedParameters": true,
-//     "moduleResolution": "node",
-//     "jsx": "react",
-//     "esModuleInterop": true,
-//     "skipLibCheck": true,
-//     "forceConsistentCasingInFileNames": true
-//   }
-// }
 {
   "compilerOptions": {
-    "rootDir": "./lib",
-    "outDir": "./dist",
-    "target": "ES5",
-    "module": "commonjs",
+    "target": "es5",
     "lib": [
-      "es2017",
-      "dom"
+      "dom",
+      "dom.iterable",
+      "esnext"
     ],
-    "declaration": true,
     "allowJs": true,
-    "jsx": "react",
-    "noImplicitAny": false,
-    "noFallthroughCasesInSwitch": true,
-    "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
     "esModuleInterop": true,
-    "skipLibCheck": true
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve"
   },
   "include": [
     "next-env.d.ts",
-    "lib/**/*.ts",
-    "lib/**/*.tsx"
+    "**/*.ts",
+    "**/*.tsx"
   ],
   "exclude": [
     "node_modules"
