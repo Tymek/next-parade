@@ -1,6 +1,6 @@
 {
   "name": "next-parade",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "files": [
     "props.js",
     "lib",
@@ -27,7 +27,7 @@
     "react-dom": ">=16"
   },
   "dependencies": {
-    "fs-extra": "9.1.0",
+    "fs-extra": "10.0.0",
     "lodash": "4.17.21",
     "react-docgen": "5.3.1",
     "react-docgen-actual-name-handler": "2.1.0",
