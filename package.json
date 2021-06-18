@@ -1,6 +1,6 @@
 {
   "name": "next-parade",
-  "version": "0.0.24",
+  "version": "0.0.25",
   "files": [
     "props.js",
     "lib",
@@ -40,13 +40,13 @@
     "@types/next": "9.0.0",
     "@types/node": "14.17.3",
     "@types/react": "17.0.11",
-    "@types/react-dom": "17.0.7",
+    "@types/react-dom": "17.0.8",
     "@types/webpack-env": "1.16.0",
     "next": "10.2.3",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "rimraf": "3.0.2",
-    "typescript": "4.3.2"
+    "typescript": "4.3.4"
   },
   "author": "Tymoteusz Czech <mail+parade@tymek.cz>",
   "license": "0BSD"
