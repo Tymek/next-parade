@@ -1,6 +1,6 @@
 {
   "name": "next-parade",
-  "version": "0.0.31",
+  "version": "0.0.32",
   "files": [
     "props.js",
     "lib",
@@ -32,7 +32,7 @@
     "react-docgen": "5.4.0",
     "react-docgen-actual-name-handler": "2.1.0",
     "react-docgen-typescript": "2.0.0",
-    "recast": "0.20.4"
+    "recast": "0.20.5"
   },
   "devDependencies": {
     "@types/fs-extra": "9.0.12",
