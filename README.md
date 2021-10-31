@@ -25,7 +25,7 @@ import withStaticProps from "next-parade/props";
 
 const context = require.context("../src/components", true, /\.js/); // ❗ relative path and regex
 export default parade(context);
-export const getStaticProps = withStaticProps(context);
+export const getStaticProps = withStaticProps(context, "src/components"); // path from project root
 ```
 
 By convention React Component should be the default export from a file.

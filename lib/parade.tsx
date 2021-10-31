@@ -24,7 +24,7 @@ const parade = (
     { docgen?: any; title?: string } & Pick<ModuleProps, "cwd">
   > = ({ title = "🚩 Parade!", docgen, ...props }) => {
     const data = JSON.parse(docgen)?.data;
-    const cwd = options.cwd || props.cwd;
+    const cwd = options?.cwd || props?.cwd;
 
     return (
       <Layout title={title} {...props}>
@@ -35,7 +35,7 @@ const parade = (
             ?.value[0];
 
           const props = {
-            docgen: file,
+            docgen: file || {},
             cwd,
             prefix: options?.prefix,
             path,

@@ -73,7 +73,6 @@ const Property: FC<PropType> = ({ name, description, ...props }) => {
 
 const Properties: ModuleType = ({ docgen }) => {
   const { props } = docgen;
-  console.log({ docgen });
 
   return (
     <table className={styles.table}>
