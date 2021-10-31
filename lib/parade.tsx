@@ -1,58 +1,66 @@
-import * as React from 'react'
-import { Fragment } from 'react'
-import type { FC } from 'react'
-import Head from 'next/head'
-import dynamic, { DynamicOptions } from 'next/dynamic'
-import ComponentWrapper from './components/ComponentWrapper'
-import type ValueType from './docgen/valueType'
+import React, { FC, Fragment } from "react";
+import dynamic, { DynamicOptions } from "next/dynamic";
+import Layout from "./components/Layout/Layout";
+import Info from "./modules/Info/Info";
+import Preview from "./modules/Preview/Preview";
+import Properties from "./modules/Properties/Properties";
+import type { ModuleProps } from "./modules/type";
+import { PropStateProvider } from "./services/PropState";
+import Item from "./components/Item/Item";
 
 const parade = (
   context: __WebpackModuleApi.RequireContext,
-  options?: DynamicOptions,
+  options?: DynamicOptions & Pick<ModuleProps, "cwd" | "prefix">
 ) => {
-  const keys = context.keys()
+  const keys = context.keys();
 
   if (keys.length === 0) {
     throw new Error(
-      `No components found in "${context.id}"\n       Try adjusting your \`require.context\``,
-    )
+      `No components found in "${context.id}"\n       Try adjusting your \`require.context\``
+    );
   }
 
-  const ComponentsParade: FC<{ docgen?: any; title?: string }> = ({
-    title = '🚩 Parade!',
-    docgen,
-    ...props
-  }) => {
-    const data = JSON.parse(docgen)?.data
+  const ComponentsParade: FC<
+    { docgen?: any; title?: string } & Pick<ModuleProps, "cwd">
+  > = ({ title = "🚩 Parade!", docgen, ...props }) => {
+    const data = JSON.parse(docgen)?.data;
+    const cwd = options.cwd || props.cwd;
 
     return (
-      <Fragment>
-        <Head>
-          <title>{title}</title>
-        </Head>
-        <main style={{ padding: '0 24px' }} {...props}>
-          <h1>{title}</h1>
-          {keys.map((key) => {
-            const DynamicComponent = dynamic(async () => context(key), options)
-            const path = key.replace(/^\.\//, '')
-            const file = data?.find(({ key: file }) => file.includes(path))
-              ?.value[0]
+      <Layout title={title} {...props}>
+        {keys.map((key) => {
+          const DynamicComponent = dynamic(async () => context(key), options);
+          const path = key.replace(/^\.\//, "");
+          const file = data?.find(({ key: file }) => file.includes(path))
+            ?.value[0];
 
-            return (
-              <ComponentWrapper
-                docgen={file}
-                key={key}
-                path={path}
-                Component={DynamicComponent}
-              />
-            )
-          })}
-        </main>
-      </Fragment>
-    )
-  }
+          const props = {
+            docgen: file,
+            cwd,
+            prefix: options?.prefix,
+            path,
+            Component: DynamicComponent,
+          };
 
-  return ComponentsParade
-}
+          return (
+            <Fragment key={key}>
+              <PropStateProvider>
+                <div id={key}>
+                  <Item>
+                    <Info {...props} />
+                    <Preview {...props} />
+                    <Properties {...props} />
+                  </Item>
+                </div>
+              </PropStateProvider>
+            </Fragment>
+          );
+        })}
+      </Layout>
+    );
+  };
 
-export default parade
+  return ComponentsParade;
+};
+
+export default parade;

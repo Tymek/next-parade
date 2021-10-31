@@ -37,3 +37,7 @@
 dist
 esm
 .tmp
+*.tsbuildinfo
+
+# editor
+.vscode/settings.json

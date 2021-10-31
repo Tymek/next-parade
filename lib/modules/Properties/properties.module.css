@@ -1,0 +1,63 @@
+.required {
+  color: red;
+  font-weight: bold;
+}
+
+.table {
+  border: 1px solid #dedeef;
+  width: 100%;
+  border-radius: 0 0 5px 5px;
+  border-top: none;
+  padding: 0.5rem;
+  background: rgba(232, 232, 232, 0.25);
+  display: flex;
+  align-items: flex-end;
+}
+
+.table tbody {
+  width: 100%;
+  display: block;
+}
+
+.table tr {
+  display: grid;
+  grid-template-columns: 25% 25% auto;
+  padding: 0.5rem 0;
+}
+
+.table td,
+.table th {
+  display: flex;
+  align-items: center;
+}
+
+.description {
+  grid-column: 1 / span 3;
+  font-size: 0.8em;
+  padding-bottom: 0.5em;
+}
+
+.table th {
+  text-align: left;
+}
+
+.type {
+  border: 1px solid #dedeef;
+  border-radius: 3px;
+  padding: 3px 5px;
+  color: #b43c3c;
+}
+
+.input {
+  height: 1.8rem;
+  vertical-align: middle;
+  border-radius: 3px;
+  border: 1px solid #dedeef;
+  width: 100%;
+  padding: 0 5px;
+  background: white;
+}
+
+.value {
+  min-height: 2rem;
+}
