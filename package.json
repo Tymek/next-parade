@@ -1,6 +1,6 @@
 {
   "name": "next-parade",
-  "version": "0.0.49",
+  "version": "0.0.52",
   "files": [
     "props.js",
     "lib",
