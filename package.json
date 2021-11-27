@@ -1,6 +1,6 @@
 {
   "name": "next-parade",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "files": [
     "props.js",
     "lib",
@@ -39,8 +39,8 @@
     "@types/fs-extra": "9.0.13",
     "@types/lodash": "4.14.177",
     "@types/next": "9.0.0",
-    "@types/node": "16.11.9",
-    "@types/react": "17.0.35",
+    "@types/node": "16.11.10",
+    "@types/react": "17.0.37",
     "@types/react-dom": "17.0.11",
     "@types/webpack-env": "1.16.3",
     "next": "12.0.4",
